@@ -1,0 +1,77 @@
+body{
+	background-color: #212529;
+	font-family: 'Merriweather', serif;
+}
+
+.container{
+	background-color: #fff;
+}
+
+.btn-primary{
+
+	background-color: #CF0000;
+	font-size: 2rem;
+	border-color: #fff;
+}
+
+.btn-primary:hover{
+
+	background-color: #bc2033;
+	border-color: #fff;
+}
+
+.t1 {
+	
+	font-size: 1.5rem;
+	line-height: 1rem;
+}
+
+.t2{
+
+	font-size: 2.5rem;
+	font-weight: 600;
+	line-height: 2rem;
+}
+
+
+.t3{
+	font-size: 1.5rem;
+ }
+
+
+.t4{
+
+	font-size: 1.2rem;
+	line-height: 1.4rem;
+
+}
+
+.brush{
+
+	background-image: url('../img/brush1.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	color: #fff;
+	text-shadow: 3px 3px #094F71;
+}
+
+.rowbgr{
+
+	border-width: .3rem;
+	border-style: dashed;
+	border-color: #a80b0b;
+	background-color: #21284f;
+}
+
+.price{
+
+	font-size: 2rem;
+	font-weight: 600;
+	color: #DA3D32;
+}
+
+.social{
+
+	width: 35px;
+	margin-left: 5px ;
+}
