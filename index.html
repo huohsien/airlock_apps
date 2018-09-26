@@ -38,33 +38,58 @@
             // }
 
             // Test: BarCodeGetReaderOutputConfiguration()
-            var result2 = "<h2>Test: BarCodeGetReaderOutputConfiguration()</h2> <hr>";
+            // var result2 = "<h2>Test: BarCodeGetReaderOutputConfiguration()</h2> <hr>";
+            // try {
+            //     var readerOutputConfig = BarCodeGetReaderOutputConfiguration();
+            //     // document.getElementById("result2").textContent = JSON.stringify(readerOutputConfig);
+
+            //     var readerOutputConfigProperties = Object.keys(readerOutputConfig); // if comment it out, then will test decoders against predefined propterty in testData.js file
+
+            //     readerOutputConfigProperties.forEach(propertyName => {
+            //         result2 = `${result2}\n <p>${propertyName}</p> <p>${readerOutputConfig[propertyName]}</p>`;
+            //     });
+            //     document.getElementById("result2").innerHTML = result2;
+
+            // } catch (error) {
+            //     document.getElementById("result2").textContent = `error: ${error}`;
+            // }
+
+            // Test: BarCodeGetSymbology(...)
+            var result3 = "<h2>Test: BarCodeGetSymbology(...)</h2> <hr>";
             try {
-                var readerOutputConfig = BarCodeGetReaderOutputConfiguration();
-                // document.getElementById("result2").textContent = JSON.stringify(readerOutputConfig);
+                symbologyNames.forEach((symbologyName) => {
+                    result3 = `${result3} <h3>${symbologyName}</h3><hr>`;
 
-                var readerOutputConfigProperties = Object.keys(readerOutputConfig); // if comment it out, then will test decoders against predefined propterty in testData.js file
+                    var symbology = BarCodeGetSymbology(symbologyName);
 
-                readerOutputConfigProperties.forEach(propertyName => {
-                    result2 = `${result2}\n <p>${propertyName}</p> <p>${readerOutputConfig[propertyName]}</p>`;
+                    var symbologyProperties = Object.keys(symbology);
+
+                    symbologyProperties.forEach(propertyName => {
+                        result3 = `${result3}\n <p>${propertyName}</p> <p>${symbology[propertyName]}</p> <hr>`;
+                    });
                 });
-                document.getElementById("result2").innerHTML = result2;
+
+                document.getElementById("result3").innerHTML = result3;
 
             } catch (error) {
-                document.getElementById("result2").textContent = `error: ${error}`;
+                document.getElementById("result3").textContent = `error: ${error}`;
             }
+
         }
     </script>
 </head>
 
 <body>
-    <h2 id = "reader_type">Unknown</h2>
+    <h2 id="reader_type">Unknown</h2>
     <hr>
-    <h2 id = "service_version">Unknown</h2>
+    <h2 id="service_version">Unknown</h2>
     <hr>
-    <!-- <div id="result">Unknown</div> -->
-    <!-- <hr> -->
+    <!-- <div id="result">Unknown</div>
+    <hr>
     <div id = "result2">Unknown</div>
+    <hr> -->
+    <div id="result3">Unknown</div>
+
 </body>
 
 </html>

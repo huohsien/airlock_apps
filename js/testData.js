@@ -43,4 +43,8 @@ var decoderProperties = [
     "enableMicroPDF417",
     "enableQRcode",
     "enableMicroQR"];
-    var readerOutputconfigProperties =[];
+var readerOutputconfigProperties = [];
+var symbologyNames = [
+    "Codabar",
+    "Code11"
+];
