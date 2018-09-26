@@ -20,22 +20,22 @@
             document.getElementById("service_version").textContent = `Service Version: ${value}`;
 
             // Test: BarCodeGetDecodersStatus()
-            // var result = "<h2>Test: BarCodeGetDecodersStatus()</h2> <hr>";
-            // try {
-            //     var decoderStatusPromise = BarCodeGetDecodersStatus();
+            var result = "<h2>Test: BarCodeGetDecodersStatus()</h2> <hr>";
+            try {
+                var decoderStatusPromise = BarCodeGetDecodersStatus();
 
-            //     decoderStatusPromise.then((decoders) => {
-            //         var decoderProperties = Object.keys(decoders); // if comment it out, then will test decoders against predefined propterty in testData.js file
-            //         decoderProperties.forEach(propertyName => {
-            //             result = `${result}\n <p>${propertyName}</p> <p>${decoders[propertyName]}</p>`;
-            //         });
-            //         document.getElementById("result").innerHTML = result;
+                decoderStatusPromise.then((decoders) => {
+                    var decoderProperties = Object.keys(decoders); // if comment it out, then will test decoders against predefined propterty in testData.js file
+                    decoderProperties.forEach(propertyName => {
+                        result = `${result}\n <p>${propertyName}</p> <p>${decoders[propertyName]}</p>`;
+                    });
+                    document.getElementById("result").innerHTML = result;
 
-            //     });
+                });
 
-            // } catch (error) {
-            //     document.getElementById("result").textContent = `error: ${error}`;
-            // }
+            } catch (error) {
+                document.getElementById("result").textContent = `error: ${error}`;
+            }
 
             // Test: BarCodeGetReaderOutputConfiguration()
             // var result2 = "<h2>Test: BarCodeGetReaderOutputConfiguration()</h2> <hr>";
@@ -75,15 +75,15 @@
             //     document.getElementById("result3").textContent = `error: ${error}`;
             // }
 
-            var result4 = "<h2> Test: BarCodeGetErrorMsg()</h2><hr>";
-            try {
-                var errorMessage = BarCodeGetErrorMsg();
-                result4 = `<h3>${errorMessage}</h3><hr>`;
-                document.getElementById("result4").innerHTML = result4;
+            // var result4 = "<h2> Test: BarCodeGetErrorMsg()</h2><hr>";
+            // try {
+            //     var errorMessage = BarCodeGetErrorMsg();
+            //     result4 = `<h3>${errorMessage}</h3><hr>`;
+            //     document.getElementById("result4").innerHTML = result4;
 
-            } catch (error) {
-                document.getElementById("result4").textContent = `error: ${error}`;
-            }
+            // } catch (error) {
+            //     document.getElementById("result4").textContent = `error: ${error}`;
+            // }
         }
     </script>
 </head>
@@ -93,10 +93,10 @@
     <hr>
     <h2 id="service_version">Unknown</h2>
     <hr>
-    <!-- <div id = "result">Unknown</div><hr>
+    <!-- <div id = "result">Unknown</div><hr> -->
     <div id = "result2">Unknown</div><hr>
-    <div id = "result3">Unknown</div><hr> -->
-    <div id="result4">Unknown</div><hr>
+    <!-- <div id = "result3">Unknown</div><hr>
+    <div id="result4">Unknown</div><hr> -->
 
 </body>
 
