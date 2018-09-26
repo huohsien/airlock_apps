@@ -43,3 +43,4 @@ var decoderProperties = [
     "enableMicroPDF417",
     "enableQRcode",
     "enableMicroQR"];
+    var readerOutputconfigProperties =[];

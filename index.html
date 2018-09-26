@@ -13,39 +13,58 @@
         airlock.onReady("handleAirlockReady()");
 
         function handleAirlockReady() {
+
             var value = BarCodeGetReaderType();
             document.getElementById("reader_type").textContent = `Reader Type: ${value}`;
             value = BarCodeGetReaderServiceVersion();
             document.getElementById("service_version").textContent = `Service Version: ${value}`;
 
-            var result = "<h2>Test: BarCodeGetDecodersStatus()</h2> <hr>";
+            // Test: BarCodeGetDecodersStatus()
+            // var result = "<h2>Test: BarCodeGetDecodersStatus()</h2> <hr>";
+            // try {
+            //     var decoderStatusPromise = BarCodeGetDecodersStatus();
+
+            //     decoderStatusPromise.then((decoders) => {
+            //         var decoderProperties = Object.keys(decoders); // if comment it out, then will test decoders against predefined propterty in testData.js file
+            //         decoderProperties.forEach(propertyName => {
+            //             result = `${result}\n <p>${propertyName}</p> <p>${decoders[propertyName]}</p>`;
+            //         });
+            //         document.getElementById("result").innerHTML = result;
+
+            //     });
+
+            // } catch (error) {
+            //     document.getElementById("result").textContent = `error: ${error}`;
+            // }
+
+            // Test: BarCodeGetReaderOutputConfiguration()
+            var result2 = "<h2>Test: BarCodeGetReaderOutputConfiguration()</h2> <hr>";
             try {
-                var decoderStatusPromise = BarCodeGetDecodersStatus();
+                var readerOutputConfig = BarCodeGetReaderOutputConfiguration();
+                // document.getElementById("result2").textContent = JSON.stringify(readerOutputConfig);
 
-                decoderStatusPromise.then((decoders) => {
-                    var decoderProperties = Object.keys(decoders); // if comment it out, then will test decoders against predefined propterty in testData.js file
-                    decoderProperties.forEach(propertyName => {
-                        result = `${result}\n <p>${propertyName}</p> <p>${decoders[propertyName]}</p>`;
-                    });
-                    document.getElementById("result").innerHTML = result;
+                var readerOutputConfigProperties = Object.keys(readerOutputConfig); // if comment it out, then will test decoders against predefined propterty in testData.js file
 
+                readerOutputConfigProperties.forEach(propertyName => {
+                    result2 = `${result2}\n <p>${propertyName}</p> <p>${readerOutputConfig[propertyName]}</p>`;
                 });
+                document.getElementById("result2").innerHTML = result2;
 
             } catch (error) {
-                document.getElementById("result").textContent = `error: ${error}`;
+                document.getElementById("result2").textContent = `error: ${error}`;
             }
-
         }
     </script>
 </head>
 
 <body>
-    <h2 id="reader_type">Unknown</h2>
+    <h2 id = "reader_type">Unknown</h2>
     <hr>
-    <h2 id="service_version">Unknown</h2>
+    <h2 id = "service_version">Unknown</h2>
     <hr>
-    <div id="result">Unknown</div>
-    <div id="result2">Unknown</div>
+    <!-- <div id="result">Unknown</div> -->
+    <!-- <hr> -->
+    <div id = "result2">Unknown</div>
 </body>
 
 </html>
