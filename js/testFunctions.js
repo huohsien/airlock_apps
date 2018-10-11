@@ -1,36 +1,27 @@
-// for debugging UI without a scanner
-if (typeof airlock == "undefined") {
-    alert("variable \"airlock\" is undefined");
-    var airlock = {
-        onReady: function (onReadyFunction) {
-            window["handleAirlockReady"]();
-        }
-    };
+function handleUseWedgeChanged(useWedge, textElement) {
+    try {
+        airlock.scanning.setWedgeEnabled(useWedge);
+    } catch (e) {
+        alert(textElement, "Error: " + e);
+    }
 }
 
-// var attr = document.getElementById("result").attributes;
-// console.log(attr);
+function initWedge(textElement) {
+    try {
+        var wedgeEnabled = airlock.scanning.isWedgeEnabled();
+        var checkBox = document.getElementById('wedgeCheckbox');
+        checkBox.checked = wedgeEnabled;
+    } catch (e) {
+        alert(textElement, "Error: " + e);
+    }
+}
 
 airlock.onReady("handleAirlockReady()");
 
-// function hideKeyboard(element) {
-//     console.log("hide keyboard function called");
-
-//     // element.attr("readonly", "readonly"); // Force keyboard to hide on input field.
-//     // element.attr("disabled", "true"); // Force keyboard to hide on textarea field.
-//     setTimeout(function () {
-//         element.blur();  //actually close the keyboard
-//         alert("blur");
-//         // Remove readonly attribute after keyboard is hidden.
-//         element.removeAttr('readonly');
-//         element.removeAttr('disabled');
-//     }, 100);
-// }
-
 function handleAirlockReady() {
 
-    // hide keyboard of text field for testing scanner
-    // hideKeyboard(element);
+    alert("1");
+    initWedge('keyboardWedgeText');
 
     var value = BarCodeGetReaderType();
     document.getElementById("reader_type").textContent = `Reader Type: ${value}`;
