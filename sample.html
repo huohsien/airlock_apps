@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Airlock Browser Scripting - Keyboard Wedge</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="../../../CodeFormatting/prism.css" rel="stylesheet" />
+    <script src="../ScriptExamples.js"></script>
+    <link rel="stylesheet" type="text/css" href="../ScriptExamples.css">
+    <script>
+        airlock.onReady("HandleAirlockReady()");
+
+        function HandleAirlockReady() {
+            initWedge('keyboardWedgeText');
+        }
+    </script>
+</head>
+
+<body>
+    <script src="../../../CodeFormatting/prism.js"></script>
+    <div class="header">
+        <div class="navigation"><a href="../" class="navigation">Airlock Browser Scripting</a></div>
+        <h2>Keyboard Wedge</h2>
+    </div>
+    <div id="dialog">
+        <div id="dialogText" style="white-space: pre-wrap;"></div>
+    </div>
+
+    <div class="testDiv">
+        <h3>Keyboard Wedge</h3>
+        <script id="keyboardWedgeScript">
+            function handleUseWedgeChanged(useWedge, textElement) {
+                try {
+                    airlock.scanning.setWedgeEnabled(useWedge);
+                } catch (e) {
+                    setText(textElement, "Error: " + e);
+                }
+            }
+
+            function initWedge(textElement) {
+                try {
+                    var wedgeEnabled = airlock.scanning.isWedgeEnabled();
+                    var checkBox = document.getElementById('wedgeCheckbox');
+                    checkBox.checked = wedgeEnabled;
+                } catch (e) {
+                    setText(textElement, "Error: " + e);
+                }
+            }
+        </script>
+        <pre class="example" id="keyboardWedgePre"></pre>
+        <script>insertScriptInPre('keyboardWedgePre', 'keyboardWedgeScript');</script>
+        <div class="sampleControls">
+            <div class="label">Wedge Enabled</div>
+            <input type="checkbox" id="wedgeCheckbox" onclick="handleUseWedgeChanged(this.checked, 'keyboardWedgeText')" />
+            <div class="label">Tap to Focus Before Scan. With wedge enabled, scan data is placed in the text box.</div>
+            <input type="text" />
+        </div>
+        <div class="outputText" id="keyboardWedgeText"></div>
+    </div>
+
+</body>
+
+</html>
