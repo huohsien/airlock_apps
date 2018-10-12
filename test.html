@@ -5,11 +5,19 @@
     <title> Test JS API </title>
 
     <script src="js/testData.js"></script>
-    <script src="js/testFunctions.js"></script>
+
     <link rel="stylesheet" href="css/testFunctions.css">
 </head>
 
 <body>
+    <script type="text/javascript" language="javascript">
+        var versionUpdate = (new Date()).getTime();
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "js/testFunctions.js?v=" + versionUpdate;
+        document.body.appendChild(script);
+    </script>
+    
     <div class="label">Wedge Enabled</div>
     <input type="checkbox" class="checkbox" id="wedgeCheckbox" onclick="handleUseWedgeChanged(this.checked, 'keyboardWedgeText')" />
 

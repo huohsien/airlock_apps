@@ -19,8 +19,7 @@ function initWedge(textElement) {
 airlock.onReady("handleAirlockReady()");
 
 function handleAirlockReady() {
-
-    alert("1");
+    alert("start handle airlock")
     initWedge('keyboardWedgeText');
 
     var value = BarCodeGetReaderType();
