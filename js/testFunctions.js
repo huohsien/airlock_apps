@@ -1,41 +1,14 @@
-// function handleUseWedgeChanged(useWedge, textElement) {
-//     try {
-//         airlock.scanning.setWedgeEnabled(useWedge);
-//     } catch (e) {
-//         alert(textElement + "- Error: " + e);
-//     }
-// }
-
-// function initWedge(textElement) {
-//     try {
-//         var wedgeEnabled = airlock.scanning.isWedgeEnabled();
-//         var checkBox = document.getElementById('wedgeCheckbox');
-//         if (checkBox.checked) {
-//             console.log("check box is checked");
-//         } else {
-//             console.log("check box is unchecked");
-//         }
-//         checkBox.checked = wedgeEnabled;
-//     } catch (e) {
-//         alert(textElement + "- Error: " + e);
-//     }
-// }
-
 if (typeof airlock == "undefined") {
     var airlock = {
         onReady() {
             alert("airlock dummy was invoked");
-            initWedge('keyboardWedgeText');
         }
     }
 }
-window.onload = function() {
-    airlock.onReady("handleAirlockReady()");
-}
+
+airlock.onReady("handleAirlockReady()");
 
 function handleAirlockReady() {
-    // initWedge('keyboardWedgeText');
-
     var value = BarCodeGetReaderType();
     document.getElementById("reader_type").textContent = `Reader Type: ${value}`;
     value = BarCodeGetReaderServiceVersion();
