@@ -14,16 +14,29 @@ function handleAirlockReady() {
     value = BarCodeGetReaderServiceVersion();
     document.getElementById("service_version").textContent = `Service Version: ${value}`;
 
-    // Test: BarCodeGetDecodersStatus()
+    var decoderNames = new Array();
     var result = "<h2>Test: BarCodeGetDecodersStatus()</h2><hr>";
+    var result2 = "<h2>Test: BarCodeGetReaderOutputConfiguration()</h2> <hr>";
+    var result3 = "<h2>Test: BarCodeGetSymbology(...)</h2><hr>";
+    var result4 = "<h2> Test: BarCodeGetErrorMsg()</h2><hr>";
+    var result5 = "<h2> Test: BarCodeGetUserPreferences()</h2><hr>";
+    var result6 = "<h2> Test: BarCodeGetNotificationParams()</h2><hr>";
+
+    // Test: BarCodeGetDecodersStatus()
     try {
         var decoderStatusPromise = BarCodeGetDecodersStatus();
 
         decoderStatusPromise.then((decoders) => {
             var decoderProperties = Object.keys(decoders); // if comment it out, then will test decoders against predefined propterty in testData.js file
+            
             decoderProperties.forEach(propertyName => {
+                var decoderName = propertyName.replace(/^enable/, '');
+                decoderNames.push(decoderName);
+
                 result = `${result}\n <p>${propertyName}</p> <p>${decoders[propertyName]}</p>`;
             });
+            alert(decoderNames[0] + " was pushed")
+
             document.getElementById("result").innerHTML = result;
 
         });
@@ -33,7 +46,6 @@ function handleAirlockReady() {
     }
 
     Test: BarCodeGetReaderOutputConfiguration()
-    var result2 = "<h2>Test: BarCodeGetReaderOutputConfiguration()</h2> <hr>";
     try {
         var readerOutputConfig = BarCodeGetReaderOutputConfiguration();
         // document.getElementById("result2").textContent = JSON.stringify(readerOutputConfig);
@@ -50,11 +62,13 @@ function handleAirlockReady() {
     }
 
     //Test: BarCodeGetSymbology(...)
-    var result3 = "<h2>Test: BarCodeGetSymbology(...)</h2><hr>";
+    // get symbology names from decoders status
     try {
-        symbologyNames.forEach((symbologyName) => {
-            result3 = `${result3} <h3>${symbologyName}</h3><hr>`;
+        var symbologyNames = decoderNames;
+        result3 = `${result3}\n <p>${symbologyNames[0]}</p><hr>`;
 
+        symbologyNames.forEach((symbologyName) => {
+            
             var symbology = BarCodeGetSymbology(symbologyName);
 
             var symbologyProperties = Object.keys(symbology);
@@ -70,17 +84,17 @@ function handleAirlockReady() {
         document.getElementById("result3").textContent = `error: ${error}`;
     }
 
-    var result4 = "<h2> Test: BarCodeGetErrorMsg()</h2><hr>";
-    try {
-        var errorMessage = BarCodeGetErrorMsg();
-        result4 = `<h3>${errorMessage}</h3><hr>`;
-        document.getElementById("result4").innerHTML = result4;
+    //Test: BarCodeGetErrorMsg(...)
+    // try {
+    //     var errorMessage = BarCodeGetErrorMsg();
+    //     result4 = `<h3>${errorMessage}</h3><hr>`;
+    //     document.getElementById("result4").innerHTML = result4;
 
-    } catch (error) {
-        document.getElementById("result4").textContent = `error: ${error}`;
-    }
+    // } catch (error) {
+    //     document.getElementById("result4").textContent = `error: ${error}`;
+    // }
 
-    var result5 = "<h2> Test: BarCodeGetUserPreferences()</h2><hr>";
+    // Test: BarCodeGetUserPreferences(...)
     try {
         var userPreferences = BarCodeGetUserPreferences();
         var userPreferenceKeys = Object.keys(userPreferences);
@@ -95,7 +109,7 @@ function handleAirlockReady() {
         document.getElementById("result5").textContent = `error: ${error}`;
     }
 
-    var result6 = "<h2> Test: BarCodeGetNotificationParams()</h2><hr>";
+    //Test: BarCodeGetNotificationParams(...)
     try {
         var notificationParams = BarCodeGetNotificationParams();
         var notificationParamKeys = Object.keys(notificationParams);
