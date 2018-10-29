@@ -32,7 +32,7 @@ function handleAirlockReady() {
             decoderProperties.forEach(propertyName => {
                 var decoderName = propertyName.replace(/^enable/, '');
                 decoderNames.push(decoderName);
-                result = `${result}\n <p>${propertyName}</p> <p>${decoders[propertyName]}</p>`;
+                result = `${result}\n <p>${propertyName}</p> <p>${decoders[propertyName]}</p><hr>`;
             });
 
             document.getElementById("result").innerHTML = result;
@@ -48,9 +48,11 @@ function handleAirlockReady() {
 
                         var symbology = BarCodeGetSymbology(symbologyName);
                         var symbologyProperties = Object.keys(symbology);
-
+                        result3 = `${result3}\n <h3>${symbologyName}</h3><hr>`;
                         symbologyProperties.forEach(propertyName => {
-                            result3 = `${result3}\n <p>${propertyName}</p> <p>${symbology[propertyName]}</p> <hr>`;
+                            if (propertyName != "name" && propertyName != "decoderId") {
+                                result3 = `${result3}\n <p>${propertyName}</p> <p>${symbology[propertyName]}</p><hr>`;
+                            }
                         });
 
                     }
