@@ -14,13 +14,25 @@
         script.src = "js/testFunctions.js?v=" + versionUpdate;
         document.body.appendChild(script);
     </script>
-    
 
-    <!-- <div class="label">Wedge Enabled</div>
-    <input type="checkbox" class="checkbox" id="wedgeCheckbox" onclick="handleUseWedgeChanged(this.checked, 'keyboardWedgeText')" /> -->
+    <select id="populationMethodSelect" onchange="handleUseWedgeChanged(this, testScannerText)">
+        <option value="0">None</option>
+        <option value="1" selected="selected">Set Text</option>
+        <option value="2">Emulate Keyboard</option>
+    </select>
 
     <h2>SN:</h2>
-    <input class="text-field" type="text" id="text_scanner_test"><br>
+    <input class="text-field" type="text" id="testScannerText"><br>
+    
+    <a target="_blank" rel="noopener noreferrer" href="http://www.google.com">
+        <button class="myButton">
+            <span>Test link that opens a new Tab using _blank</span>
+        </button>
+    </a>
+    
+    <button class="myButton" onClick="window.open('http://www.google.com');">
+        <span>Test link that opens a new Tab using window.open</span>
+    </button>
 
     <h2 id="reader_type">reader type unknown</h2>
     <hr>

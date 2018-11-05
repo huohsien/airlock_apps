@@ -5,10 +5,35 @@ if (typeof airlock == "undefined") {
         }
     }
 }
+function handleUseWedgeChanged(select, textElement) {
+    if (typeof airlock != "undefined") {
+        try {
+            var value = parseInt(select.value);
+            airlock.scanning.setPopulationMethod(value);
+        } catch (error) {
+            // textElement.textContent = "Error: " + error;
+            alert("Error: " + error);
+        }
+    }
+}
+
+function initWedge(textElement) {
+    try {
+        var populationMethod = airlock.scanning.getPopulationMethod();
+        var select = document.getElementById("populationMethodSelect");
+        select.value = populationMethod + "";
+    } catch (error) {
+        // textElement.textContent = "Error: " + error;
+        alert("Error: " + error);
+    }
+}
 
 airlock.onReady("handleAirlockReady()");
 
 function handleAirlockReady() {
+
+    initWedge('testScannerText');
+
     var value = BarCodeGetReaderType();
     document.getElementById("reader_type").textContent = `Reader Type: ${value}`;
     value = BarCodeGetReaderServiceVersion();
