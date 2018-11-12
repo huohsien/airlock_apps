@@ -28,12 +28,34 @@ function initWedge(textElement) {
     }
 }
 
+function initAutoRotateMode(textElement) {
+    try {
+        var autoRotateMode = JSGetAutoRotate();
+        var select = document.getElementById("autoRotateMode");
+        select.value = autoRotateMode + "";
+    } catch (error) {
+        // textElement.textContent = "Error: " + error;
+        alert("Error: " + error);
+    }
+}
+function handleAutoRotateModeChanged(select, textElement) {
+    if (typeof airlock != "undefined") {
+        try {
+            var value = parseInt(select.value);
+            // alert("selected:" + value);
+            JSSetAutoRotate(value);
+        } catch (error) {
+            // textElement.textContent = "Error: " + error;
+            alert("Error: " + error);
+        }
+    }
+}
 airlock.onReady("handleAirlockReady()");
 
 function handleAirlockReady() {
 
     initWedge('testScannerText');
-
+    initAutoRotateMode('autoRotateModeText');
     var value = BarCodeGetReaderType();
     document.getElementById("reader_type").textContent = `Reader Type: ${value}`;
     value = BarCodeGetReaderServiceVersion();

@@ -15,6 +15,14 @@
         document.body.appendChild(script);
     </script>
 
+    <select id="autoRotateMode" onchange="handleAutoRotateModeChanged(this,autoRotateModeText)">
+        <option value="1">UNLOCKED</option>
+        <option value="2">LOCK PORTRAIT</option>
+        <option value="3">LOCK LANDSCAPE</option>
+    </select>
+
+    <h2 id="autoRotateModeText"></h2>
+
     <select id="populationMethodSelect" onchange="handleUseWedgeChanged(this, testScannerText)">
         <option value="0">None</option>
         <option value="1" selected="selected">Set Text</option>
@@ -22,14 +30,19 @@
     </select>
 
     <h2>SN:</h2>
-    <input class="text-field" type="text" id="testScannerText"><br>
-    
-    <a target="_blank" rel="noopener noreferrer" href="http://www.google.com">
-        <button class="myButton">
-            <span>Test link that opens a new Tab using _blank</span>
-        </button>
-    </a>
-    
+    <span>
+        <textarea class="myTextarea" rows="4" cols="50"></textarea>
+    </span>
+    <span>
+        <textarea class="myTextfield" id="testScannerText"></textarea>
+    </span>
+    <span>
+        <a target="_blank" rel="noopener noreferrer" href="http://www.google.com">
+            <button class="myButton">
+                <span>Test link that opens a new Tab using _blank</span>
+            </button>
+        </a>
+    </span>
     <button class="myButton" onClick="window.open('http://www.google.com');">
         <span>Test link that opens a new Tab using window.open</span>
     </button>
