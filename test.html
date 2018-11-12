@@ -23,18 +23,19 @@
 
     <h2 id="autoRotateModeText"></h2>
 
-    <select id="populationMethodSelect" onchange="handleUseWedgeChanged(this, testScannerText)">
+    <select id="populationMethodSelect" onchange="handleUseWedgeChanged(this, testScannerTextArea)">
         <option value="0">None</option>
         <option value="1" selected="selected">Set Text</option>
         <option value="2">Emulate Keyboard</option>
     </select>
 
-    <h2>SN:</h2>
+    <h2>Test scan in Text Area</h2>
     <span>
-        <textarea class="myTextarea" rows="4" cols="50"></textarea>
+        <textarea class="myTextarea" rows="4" cols="50" id="testScannerTextArea"></textarea>
     </span>
+    <h2>Test scan in Input Text</h2>
     <span>
-        <textarea class="myTextfield" id="testScannerText"></textarea>
+        <input type= "text" class="myTextfield" id="testScannerTextfield"></textarea>
     </span>
     <span>
         <a target="_blank" rel="noopener noreferrer" href="http://www.google.com">
