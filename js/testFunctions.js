@@ -52,10 +52,29 @@ function handleAutoRotateModeChanged(select, textElement) {
 }
 airlock.onReady("handleAirlockReady()");
 
+// async function testEnablePlessy() {
+//     alert("start testing enablePlessey");
+//     try {
+//         ds = await BarCodeGetDecodersStatus();
+//         enabledBefore = ds.enablePlessey;
+//         ds.enablePlessey = !enabledBefore;
+//         await BarCodeSetDecodersStatus(ds);
+//         ds2 = await BarCodeGetDecodersStatus();
+//         enabledAfter = ds2.enablePlessey;
+//         alert("Testing enablePlessey resule:\n enableBefore: "+enabledBefore+"\nenableAfter:"+enabledAfter+"\n");
+    
+//     } catch(error) {
+//         alert("error:" + error);
+//     }
+// }
+
 function handleAirlockReady() {
 
     initWedge('testScannerText');
     initAutoRotateMode('autoRotateModeText');
+    
+    // testEnablePlessy();
+    
     var value = BarCodeGetReaderType();
     document.getElementById("reader_type").textContent = `Reader Type: ${value}`;
     value = BarCodeGetReaderServiceVersion();
